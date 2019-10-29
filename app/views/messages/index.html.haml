@@ -15,7 +15,7 @@
      
     %ul.wrapper__chat-side__side-header__box__menu
      %label.wrapper__chat-side__side-header__box__menu__new-group
-      = link_to "https://www.facebook.com/" do
+      = link_to new_group_path do
        %i= fa_icon "edit"
      %label.wrapper__chat-side__side-header__box__menu__edit-user
       = link_to "https://www.facebook.com/" do
@@ -42,6 +42,7 @@
 
   .wrapper__chat-main__form
    %form.wrapper__chat-main__form__new-message
+
     %input{:name => "utf8", :type => "hidden", :value => "✓"}/
     %input{:name => "authenticity_token", :type => "hidden", :value => "nY4oQNSsAk3YgLIXJmM2YLux9cYvdvWOpUZ6tYHR/sveU/MuIwV6RsJY3skqznWHGGxbAEVdX57fWFfQRPfCDQ=="}/
     .wrapper__chat-main__form__new-message__input-box
@@ -50,3 +51,6 @@
       %i.fa.fa-image
       %input.wrapper__chat-main__form__new-message__input-box__image__file{:name => "message[image]", :type => "file", id:"upload-icon"}/
     %input.wrapper__chat-main__form__new-message__submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+
+    -# = form_for  do |f|
+  -#    = f.text_field method, {}
