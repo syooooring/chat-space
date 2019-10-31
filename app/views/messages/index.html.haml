@@ -1,56 +1,27 @@
 .header
- グループを作成しました
-
-
+  グループを作成しました
 .flash-box
-
-
 .wrapper
-
- .wrapper__chat-side
-  .wrapper__chat-side__side-header
-   .wrapper__chat-side__side-header__box
-    %p.wrapper__chat-side__side-header__box__user-name
-     ユーザー名
-     
-    %ul.wrapper__chat-side__side-header__box__menu
-     %label.wrapper__chat-side__side-header__box__menu__new-group
-      = link_to new_group_path do
-       %i= fa_icon "edit"
-     %label.wrapper__chat-side__side-header__box__menu__edit-user
-      = link_to "https://www.facebook.com/" do
-       %i= fa_icon "cog"
-  .wrapper__chat-side__groups
-   =render partial: "messages/link"
-
-
- .wrapper__chat-main
-  .wrapper__chat-main__main-header
-   .wrapper__chat-main__main-header__edit-btn
-    = link_to "Edit","https://www.facebook.com/"
-   .wrapper__chat-main__main-header__left-box
-    %h2.wrapper__chat-main__main-header__left-box__current-group
-     グループ名
-    %ul.wrapper__chat-main__main-header__left-box__member-list
-     メンバー一覧
-     %ul.wrapper__chat-main__main-header__left-box__member-list__member
-      aaa iii uuu
-
-  .wrapper__chat-main__message
-   =render partial: "messages/texts"
-   
-
-  .wrapper__chat-main__form
-   %form.wrapper__chat-main__form__new-message
-
-    %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-    %input{:name => "authenticity_token", :type => "hidden", :value => "nY4oQNSsAk3YgLIXJmM2YLux9cYvdvWOpUZ6tYHR/sveU/MuIwV6RsJY3skqznWHGGxbAEVdX57fWFfQRPfCDQ=="}/
-    .wrapper__chat-main__form__new-message__input-box
-     %input.wrapper__chat-main__form__new-message__input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text"}/
-     %label.wrapper__chat-main__form__new-message__input-box__image{:for => "upload-icon"}
-      %i.fa.fa-image
-      %input.wrapper__chat-main__form__new-message__input-box__image__file{:name => "message[image]", :type => "file", id:"upload-icon"}/
-    %input.wrapper__chat-main__form__new-message__submit-btn{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
-
-    -# = form_for  do |f|
-  -#    = f.text_field method, {}
+  = render 'shared/side_bar'
+  .wrapper__chat-main
+    .wrapper__chat-main__main-header
+      .wrapper__chat-main__main-header__edit-btn
+        = link_to "Edit","https://www.facebook.com/"
+      .wrapper__chat-main__main-header__left-box
+        %h2.wrapper__chat-main__main-header__left-box__current-group
+          グループ名
+        %ul.wrapper__chat-main__main-header__left-box__member-list
+          メンバー一覧
+          %ul.wrapper__chat-main__main-header__left-box__member-list__member
+            aaa iii uuu
+    .wrapper__chat-main__message
+      - @messages.each do |message|
+        = render partial: "message", locals: {message: message}
+  .wrapper__form
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      .wrapper__form__mask
+        = f.label :image, class: 'form__mask__image' do
+          = fa_icon 'picture-o', class: 'icon'
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'
