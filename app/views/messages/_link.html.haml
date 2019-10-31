@@ -1,12 +1,7 @@
-= link_to "https://www.facebook.com/", class:"wrapper__chat-side__groups__link", id:"" do
- .wrapper__chat-side__groups__link__group
-  %p.wrapper__chat-side__groups__link__group__name
-   グループ名
-  %p.wrapper__chat-side__groups__link__group__latest-message
-   まだ本文がありません
-= link_to "https://www.facebook.com/", class:"wrapper__chat-side__groups__link", id:"" do
- .wrapper__chat-side__groups__link__group
-  %p.wrapper__chat-side__groups__link__group__name
-   グループ名
-  %p.wrapper__chat-side__groups__link__group__latest-message
-   まだ本文がありません
+- current_user.groups.each do |group|
+  = link_to group_messages_path(group), class:"wrapper__chat-side__groups__link", id:"" do
+    .wrapper__chat-side__groups__link__group
+      %p.wrapper__chat-side__groups__link__group__name
+      = group.name
+      %p.wrapper__chat-side__groups__link__group__latest-message
+      = group.show_last_message
