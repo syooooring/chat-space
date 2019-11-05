@@ -34,7 +34,7 @@ $(function(){
       var html = buildHTML(message);
       $('.wrapper__chat-main__message').append(html);
       $('.wrapper__chat-main__message').animate({ scrollTop: $('.wrapper__chat-main__message')[0].scrollHeight });
-      $(message_content).val("")
+      $('#new_message')[0].reset();
     })
     .fail(function(){
       alert('エラーが発生したためメッセージは送信できませんでした。');
