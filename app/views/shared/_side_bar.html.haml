@@ -2,13 +2,13 @@
   .wrapper__chat-side__side-header
     .wrapper__chat-side__side-header__box
       %p.wrapper__chat-side__side-header__box__user-name
-        ユーザー名 
+        = current_user.name
       %ul.wrapper__chat-side__side-header__box__menu
         %label.wrapper__chat-side__side-header__box__menu__new-group
           = link_to new_group_path do
             %i= fa_icon "edit"
-      %label.wrapper__chat-side__side-header__box__menu__edit-user
-        = link_to edit_user_path(current_user) do
-          %i= fa_icon "cog"
+        %label.wrapper__chat-side__side-header__box__menu__edit-user
+          = link_to edit_user_path(current_user) do
+            %i= fa_icon "cog"
   .wrapper__chat-side__groups
     =render partial: "messages/link"

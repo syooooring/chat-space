@@ -6,14 +6,14 @@
   .wrapper__chat-main
     .wrapper__chat-main__main-header
       .wrapper__chat-main__main-header__edit-btn
-        = link_to "Edit","https://www.facebook.com/"
+        = link_to "Edit",edit_group_path(@group.id)
       .wrapper__chat-main__main-header__left-box
         %h2.wrapper__chat-main__main-header__left-box__current-group
-          グループ名
+          = @group.name
         %ul.wrapper__chat-main__main-header__left-box__member-list
-          メンバー一覧
+          Member :
           %ul.wrapper__chat-main__main-header__left-box__member-list__member
-            aaa iii uuu
+            = current_user.name
     .wrapper__chat-main__message
       - @messages.each do |message|
         = render partial: "message", locals: {message: message}
