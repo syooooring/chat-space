@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function(){
     .done(function(message){
       var html = buildHTML(message);
       $('.wrapper__chat-main__message').append(html);
-      $('.wrapper__chat-main__message').animate({ scrollTop: $('.wrapper__chat-main__message')[0].scrollHeight });
+      $('.wrapper__chat-main__message').animate({ scrollTop: $('.wrapper__chat-main__message')[0].scrollHeight});
       $('#new_message')[0].reset();
     })
     .fail(function(){
@@ -54,13 +54,16 @@ $(document).on('turbolinks:load', function(){
         dataType: 'json',
         data: {last_id: last_message_id}
       })
-      .done(function (messages) { //通信成功したら、controllerから受け取ったデータ（messages)を引数にとって以下のことを行う
-        var insertHTML = '';//追加するHTMLの入れ物を作る
+      .done(function (messages) {
+        if (messages.length == 0 ) {
+          return false;
+        }
+        var insertHTML = '';
         messages.forEach(function (message) {
           insertHTML = buildHTML(message);
           $('.wrapper__chat-main__message').append(insertHTML);
         })
-        $('.wrapper__chat-main__message').animate({scrollTop: $('.wrapper__chat-main__message')[0].scrollHeight}, 'fast');//最新のメッセージが一番下に表示されようにスクロールする。
+        $('.wrapper__chat-main__message').animate({scrollTop: $('.wrapper__chat-main__message')[0].scrollHeight}, 'fast');
       })
       .fail(function () {
         alert('自動更新に失敗しました');
