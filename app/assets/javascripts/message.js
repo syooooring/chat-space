@@ -39,6 +39,9 @@ $(document).on('turbolinks:load', function(){
     .fail(function(){
       alert('エラーが発生したためメッセージは送信できませんでした。');
     })
+    .always(function(){
+      $('.wrapper__form__submit').prop('disabled', false);
+    });
   })
   var reloadMessages = function () {
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
