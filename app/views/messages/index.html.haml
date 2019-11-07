@@ -1,5 +1,4 @@
-.header
-  グループを作成しました
+
 .flash-box
 .wrapper
   = render 'shared/side_bar'
@@ -13,7 +12,8 @@
         %ul.wrapper__chat-main__main-header__left-box__member-list
           Member :
           %ul.wrapper__chat-main__main-header__left-box__member-list__member
-            = current_user.name
+          - @group.users.each do |group_user|
+            = group_user.name
     .wrapper__chat-main__message
       - @messages.each do |message|
         = render partial: "message", locals: {message: message}
